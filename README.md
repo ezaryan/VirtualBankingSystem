@@ -92,9 +92,4 @@ CREATE TABLE transactions (
 
 This project is open-source and available under the [MIT License](LICENSE).
 
-```
-
----
-
 Let me know if you want the `README.md` file in downloadable format or with direct integration into your project!
-```
