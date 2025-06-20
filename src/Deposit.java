@@ -12,11 +12,23 @@ class Deposit extends JFrame
         Font f = new Font("Futura", Font.BOLD, 40);
         Font f2 = new Font("Calibri", Font.PLAIN, 22);
 
+        JPanel backgroundPanel = new JPanel() {
+            private Image bg = new ImageIcon(getClass().getResource("deposit.jpg")).getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
+
         JLabel title = new JLabel("Deposit Money", JLabel.CENTER);
+        title.setForeground(Color.WHITE);
         JLabel label = new JLabel("Enter Amount:");
-        JTextField t1 = new JTextField(10);
-        JButton b1 = new JButton("Deposit");
-        JButton b2 = new JButton("Back");
+        label.setForeground(Color.WHITE);
+        JTextField t1 = new RoundTextField(10);
+        JButton b1 = new RoundButton("Deposit");
+        JButton b2 = new RoundButton("Back");
 
         title.setFont(f);
         label.setFont(f2);
@@ -24,20 +36,19 @@ class Deposit extends JFrame
         b1.setFont(f2);
         b2.setFont(f2);
 
-        Container c = getContentPane();
-        c.setLayout(null);
-
         title.setBounds(200, 30, 400, 50);
         label.setBounds(250, 120, 300, 30);
         t1.setBounds(250, 160, 300, 30);
         b1.setBounds(300, 220, 200, 40);
         b2.setBounds(300, 280, 200, 40);
 
-        c.add(title);
-        c.add(label);
-        c.add(t1);
-        c.add(b1);
-        c.add(b2);
+        backgroundPanel.add(title);
+        backgroundPanel.add(label);
+        backgroundPanel.add(t1);
+        backgroundPanel.add(b1);
+        backgroundPanel.add(b2);
+
+        setContentPane(backgroundPanel);
 
         b2.addActionListener(
                 a->

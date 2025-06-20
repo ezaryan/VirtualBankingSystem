@@ -10,17 +10,24 @@ class Profile extends JFrame {
         Font f = new Font("Futura", Font.BOLD, 35);
         Font f2 = new Font("Calibri", Font.PLAIN, 20);
 
+        JPanel backgroundPanel = new JPanel() {
+            private Image bg = new ImageIcon(getClass().getResource("profilesettings.jpg")).getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
+
         JLabel title = new JLabel("Profile Settings", JLabel.CENTER);
         title.setFont(f);
-
         JLabel l1 = new JLabel("Select Field to Update:");
-        JComboBox<String> box = new JComboBox<>(new String[]{"Username", "Password", "Phone", "Email"});
-
+        JComboBox<String> box = new RoundComboBox<>(new String[]{"Username", "Password", "Phone", "Email"});
         JLabel l2 = new JLabel("Enter New Value:");
-        JTextField t1 = new JTextField(15);
-
-        JButton b1 = new JButton("Update");
-        JButton b2 = new JButton("Back");
+        JTextField t1 = new RoundTextField(15);
+        JButton b1 = new RoundButton("Update");
+        JButton b2 = new RoundButton("Back");
 
         l1.setFont(f2);
         box.setFont(f2);
@@ -28,9 +35,6 @@ class Profile extends JFrame {
         t1.setFont(f2);
         b1.setFont(f2);
         b2.setFont(f2);
-
-        Container c = getContentPane();
-        c.setLayout(null);
 
         title.setBounds(250, 20, 300, 40);
         l1.setBounds(200, 100, 200, 30);
@@ -40,13 +44,15 @@ class Profile extends JFrame {
         b1.setBounds(250, 220, 120, 40);
         b2.setBounds(400, 220, 120, 40);
 
-        c.add(title);
-        c.add(l1);
-        c.add(box);
-        c.add(l2);
-        c.add(t1);
-        c.add(b1);
-        c.add(b2);
+        backgroundPanel.add(title);
+        backgroundPanel.add(l1);
+        backgroundPanel.add(box);
+        backgroundPanel.add(l2);
+        backgroundPanel.add(t1);
+        backgroundPanel.add(b1);
+        backgroundPanel.add(b2);
+
+        setContentPane(backgroundPanel);
 
         b2.addActionListener(
                 a->{

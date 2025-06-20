@@ -6,18 +6,29 @@ import java.sql.*;
 
 class Home extends JFrame {
     Home(String username) {
+        JPanel backgroundPanel = new JPanel() {
+            private Image bg = new ImageIcon(getClass().getResource("homepage.jpg")).getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
         double balance = 0.0;
         Font f = new Font("Futura", Font.BOLD, 40);
         Font f2 = new Font("Calibri", Font.PLAIN, 22);
 
         JLabel title = new JLabel("Welcome " + username, JLabel.CENTER);
+        title.setForeground(Color.WHITE);
         JLabel balanceLabel = new JLabel("Balance: ₹0.00", JLabel.CENTER);
-        JButton b1 = new JButton("Deposit");
-        JButton b2 = new JButton("Withdraw");
-        JButton b3 = new JButton("Profile Settings");
-        JButton b4 = new JButton("Transfer");
-        JButton b5 = new JButton("Passbook");
-        JButton b6 = new JButton("Logout");
+        balanceLabel.setForeground(Color.WHITE);
+        JButton b1 = new RoundButton("Deposit");
+        JButton b2 = new RoundButton("Withdraw");
+        JButton b3 = new RoundButton("Profile Settings");
+        JButton b4 = new RoundButton("Transfer");
+        JButton b5 = new RoundButton("Passbook");
+        JButton b6 = new RoundButton("Logout");
 
         title.setFont(f);
         balanceLabel.setFont(f2);
@@ -28,7 +39,7 @@ class Home extends JFrame {
         b5.setFont(f2);
         b6.setFont(f2);
 
-        Container c = getContentPane();
+        JPanel c = (JPanel) getContentPane();
         c.setLayout(null);
 
         title.setBounds(100, 30, 600, 50);
@@ -43,14 +54,16 @@ class Home extends JFrame {
         b5.setBounds(100, 290, 200, 40);
         b6.setBounds(400, 290, 200, 40);
 
-        c.add(title);
-        c.add(balanceLabel);
-        c.add(b1);
-        c.add(b2);
-        c.add(b3);
-        c.add(b4);
-        c.add(b5);
-        c.add(b6);
+        backgroundPanel.add(title);
+        backgroundPanel.add(balanceLabel);
+        backgroundPanel.add(b1);
+        backgroundPanel.add(b2);
+        backgroundPanel.add(b3);
+        backgroundPanel.add(b4);
+        backgroundPanel.add(b5);
+        backgroundPanel.add(b6);
+
+        setContentPane(backgroundPanel);
         b4.addActionListener(
                 a->{
                     new Transfer(username);

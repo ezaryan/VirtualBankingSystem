@@ -13,14 +13,17 @@ class Transfer extends JFrame {
         Font f2 = new Font("Calibri", Font.PLAIN, 18);
 
         JLabel title = new JLabel("Transfer Funds", JLabel.CENTER);
+        title.setForeground(Color.WHITE);
         JLabel l1 = new JLabel("Receiver:");
-        JTextField t1 = new JTextField(10);
+        l1.setForeground(Color.WHITE);
+        JTextField t1 = new RoundTextField(10);
 
         JLabel l2 = new JLabel("Amount:");
-        JTextField t2 = new JTextField(10);
+        l2.setForeground(Color.WHITE);
+        JTextField t2 = new RoundTextField(10);
 
-        JButton b1 = new JButton("Transfer");
-        JButton b2 = new JButton("Back");
+        JButton b1 = new RoundButton("Transfer");
+        JButton b2 = new RoundButton("Back");
 
         title.setFont(f);
         l1.setFont(f2);
@@ -30,8 +33,15 @@ class Transfer extends JFrame {
         b1.setFont(f2);
         b2.setFont(f2);
 
-        Container c = getContentPane();
-        c.setLayout(null);
+        JPanel backgroundPanel = new JPanel() {
+            private Image bg = new ImageIcon(getClass().getResource("transfer.jpg")).getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
 
         int labelX = 200, fieldX = 400, yStart = 80, width = 150, height = 30, gap = 40;
 
@@ -46,13 +56,15 @@ class Transfer extends JFrame {
         b1.setBounds(250, yStart + 2 * gap, 120, 40);
         b2.setBounds(400, yStart + 2 * gap, 120, 40);
 
-        c.add(title);
-        c.add(l1);
-        c.add(t1);
-        c.add(l2);
-        c.add(t2);
-        c.add(b1);
-        c.add(b2);
+        backgroundPanel.add(title);
+        backgroundPanel.add(l1);
+        backgroundPanel.add(t1);
+        backgroundPanel.add(l2);
+        backgroundPanel.add(t2);
+        backgroundPanel.add(b1);
+        backgroundPanel.add(b2);
+
+        setContentPane(backgroundPanel);
 
         b1.addActionListener(
                 a->
@@ -87,6 +99,12 @@ class Transfer extends JFrame {
                     t1.setText("");
                     t2.setText("");
                 }
+        );
+        b2.addActionListener(
+            a -> {
+                new Home(username);
+                dispose();
+            }
         );
 
 
