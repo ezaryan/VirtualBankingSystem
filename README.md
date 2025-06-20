@@ -30,18 +30,18 @@ Follow these steps to set up the database for the application:
 
 ### 2. Configure MySQL
 
-- Open **MySQL** and set a **root user password** (if not already set)  
+- Open **MySQL** and set a **```root``` user password** (if not already set)  
 - Open **Command Prompt** and navigate to:  
 
 
-C:\Program Files\MySQL\MySQL Server 8.0\bin
+```C:\Program Files\MySQL\MySQL Server 8.0\bin```
 
  Run the following:
 ```
 mysql -u root -p
 ````
 
-* Enter your MySQL root password.
+* Enter your MySQL ```root``` password.
 
 ### 3. Create the Database & Tables
 
@@ -77,7 +77,7 @@ CREATE TABLE transactions (
 ## 📂 Running the Project
 
 1. Open the project folder in your IDE (e.g., IntelliJ IDEA, Eclipse, VS Code).
-2. Update the database name and password in the JDBC connection string in the code.
+2. Update the ```database name``` and ```password``` in the ```JDBC connection string``` in the code.
 3. Compile and run the project.
 4. Start as:
 
