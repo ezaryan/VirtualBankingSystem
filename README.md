@@ -36,9 +36,8 @@ Follow these steps to set up the database for the application:
 
 C:\Program Files\MySQL\MySQL Server 8.0\bin
 
-````
-- Run the following:
-```bash
+ Run the following:
+```
 mysql -u root -p
 ````
 
